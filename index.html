@@ -515,6 +515,31 @@
     header h1 { font-size: 28px; }
     .panel h2 { font-size: 18px; }
   }
+
+  /* ===== ✕ 앱 닫기 버튼 (우측 상단 원형) ===== */
+  .btn-close {
+    position: fixed;
+    top: 16px; right: 16px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--sprout) 0%, var(--leaf-deep) 100%);
+    color: #fff;
+    border: 2.5px solid #fff;
+    font-family: 'Jua', sans-serif;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #5b8a2f, 0 6px 18px rgba(0,0,0,0.18);
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
+    line-height: 1;
+    transition: filter .15s, box-shadow .15s, transform .15s;
+  }
+  .btn-close:hover { filter: brightness(1.08); transform: scale(1.05); }
+  .btn-close:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #5b8a2f;
+  }
 </style>
 </head>
 <body>
@@ -581,6 +606,9 @@
     </div>
   </section>
 </main>
+
+<!-- ✕ 앱 닫기 버튼: 우측 상단 -->
+<button class="btn-close" id="btnClose" aria-label="앱 닫기">✕</button>
 
 <div class="celebrate-banner" id="celebrate" aria-hidden="true">
   <div class="msg">🎉 와! 5 모으기 성공! 🎉</div>
@@ -910,6 +938,11 @@ $('#btnReset').addEventListener('click', () => {
   state.bond = { a: null, b: null, c: null };
   renderFrame();
   renderBond();
+});
+
+/* ✕ 앱 닫기 버튼 — window.close() 시도 */
+$('#btnClose').addEventListener('click', () => {
+  window.close();
 });
 
 /* ============================================================
